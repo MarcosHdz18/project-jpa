@@ -103,7 +103,7 @@ public class DisqueraDAOImpl implements IDisqueraDAO {
 		@SuppressWarnings("unchecked")
 		TypedQuery<Disquera> query = (TypedQuery<Disquera>) em.createQuery("FROM Disquera ORDER BY descripcion");
 		
-		return query.getResultList();
+		return query.getResultList();		
 	}
 
 	@Override
