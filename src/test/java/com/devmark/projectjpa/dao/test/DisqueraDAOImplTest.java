@@ -86,5 +86,29 @@ class DisqueraDAOImplTest {
 		System.out.println("Fecha de Creación = " + registroConsultado.getFechaCreacion());
 		System.out.println("Estatus = " + registroConsultado.isEstatus());
 	}
+	
+	/**
+	 * Test method for {@link com.devmark.projectjpa.dao.impl.DisqueraDAOImpl#findByDescripcion(java.lang.String)}.
+	 */
+	@Test
+	void testFindByDescripcion() {
+		
+		Disquera registroConsultado = disqueraDAO.findByDescripcion("Albino Records");
+		assertNotNull(registroConsultado);
+		System.out.println("Disquera by descripcion: " + registroConsultado.getDescripcion());
+		
+	}
+	
+	/**
+	 * Test method for {@link com.devmark.projectjpa.dao.impl.DisqueraDAOImpl#findByDescripcionNative(java.lang.String)}.
+	 */	
+	@Test
+	void testFindByDescripcionNative() {
+		
+		Disquera registroConsultado = disqueraDAO.findByDescripcionNative("Albino Records");
+		assertNotNull(registroConsultado);
+		System.out.println("Disquera by descripcion: " + registroConsultado.getDescripcion());
+		
+	}
 
 }

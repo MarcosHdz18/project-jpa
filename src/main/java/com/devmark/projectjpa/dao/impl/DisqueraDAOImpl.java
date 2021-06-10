@@ -23,6 +23,9 @@ import com.devmark.projectjpa.entity.Disquera;
  */
 public class DisqueraDAOImpl implements IDisqueraDAO {
 
+	/**
+	 * Constante que crea un EntityManager para manejar los Entities de las clases mapeadas a la base de datos
+	 */
 	private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
 			.createEntityManagerFactory("persistenceProjectJPA");
 
@@ -33,9 +36,8 @@ public class DisqueraDAOImpl implements IDisqueraDAO {
 		
 		EntityTransaction et = em.getTransaction();
 		
-		et.begin();
-		
 		try {
+			et.begin();
 			em.persist(disquera);
 			et.commit();
 		} catch (Exception e) {
@@ -54,9 +56,9 @@ public class DisqueraDAOImpl implements IDisqueraDAO {
 		EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
 		
 		EntityTransaction et = em.getTransaction();
-		et.begin();
 		
 		try {
+			et.begin();
 			em.merge(disquera);
 			et.commit();
 		} catch (Exception e) {
@@ -78,9 +80,9 @@ public class DisqueraDAOImpl implements IDisqueraDAO {
 		Disquera registroConsultado = em.find(Disquera.class, idDisquera);
 				
 		EntityTransaction et = em.getTransaction();
-		et.begin();
 		
 		try {
+			et.begin();
 			em.remove(registroConsultado);
 			et.commit();
 		} catch (Exception e) {
@@ -103,7 +105,7 @@ public class DisqueraDAOImpl implements IDisqueraDAO {
 		@SuppressWarnings("unchecked")
 		TypedQuery<Disquera> query = (TypedQuery<Disquera>) em.createQuery("FROM Disquera ORDER BY descripcion");
 		
-		return query.getResultList();
+		return query.getResultList();		
 	}
 
 	@Override
@@ -119,6 +121,30 @@ public class DisqueraDAOImpl implements IDisqueraDAO {
 		
 		return registroConsultado;
 		
+	}
+
+	@Override
+	public Disquera findByDescripcion(String descripcion) {
+		
+		EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+		
+		@SuppressWarnings("unchecked")
+		TypedQuery<Disquera> query = (TypedQuery<Disquera>) em.createQuery("FROM Disquera WHERE descripcion = :desc");
+		query.setParameter("desc", descripcion);
+		
+		return query.getSingleResult();
+	}
+
+	@Override
+	public Disquera findByDescripcionNative(String descripcion) {
+		
+		EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+		
+		@SuppressWarnings("unchecked")
+		TypedQuery<Disquera> queryNative = (TypedQuery<Disquera>) em.createNativeQuery("SELECT * FROM disquera WHERE descripcion = :desc", Disquera.class);
+		queryNative.setParameter("desc", descripcion);
+		
+		return queryNative.getSingleResult();
 	}
 
 }

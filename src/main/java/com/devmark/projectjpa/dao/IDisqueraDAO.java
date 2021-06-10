@@ -25,4 +25,18 @@ public interface IDisqueraDAO {
 	
 	public abstract Disquera findById(Long idDisquera);
 	
+	/**
+	 * Metodo que reliza consulta con JPQL para obtener un registro de la base de datos por parametro
+	 * @param descripcion
+	 * @return
+	 */
+	public abstract Disquera findByDescripcion(String descripcion);
+	
+	/**
+	 * Metodo que reliza consulta con SQL nativo para obtener un registro de la base de datos por parametro
+	 * @param descripcion
+	 * @return
+	 */
+	public abstract Disquera findByDescripcionNative(String descripcion);
+	
 }

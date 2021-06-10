@@ -9,6 +9,8 @@
     	
     	<!-- Define las clases que seran mapeadas a la base de datos -->
     	<class>com.devmark.projectjpa.entity.Disquera</class>
+    	<class>com.devmark.projectjpa.entity.Genero</class>
+    	<class>com.devmark.projectjpa.entity.SubGenero</class>
     	
     	<!-- Propiedades de conexion a la base de datos -->
     	<properties>
