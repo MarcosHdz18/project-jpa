@@ -19,7 +19,7 @@ public interface IDisqueraDAO {
 	
 	public abstract void update(Disquera disquera);
 	
-	public abstract void delete(Disquera disquera);
+	public abstract void delete(Long idDisquera);
 	
 	public abstract List<Disquera> findAll();
 	
